@@ -7,6 +7,8 @@ const equals = document.getElementById("equals");
 let calculation = '';
 let resultContainer = document.getElementById("result");
 let resultValue = document.createElement("p");
+let openBrackets;
+let closedBrackets;
 
 updateResult(calculation);
 resultContainer.append(resultValue);
@@ -37,6 +39,23 @@ function getLastOperator() {
         }
     }
     return null;
+}
+
+function getLastValue() {
+    return calculation.substring(calculation.length - 1);
+}
+
+function getOpenBracketsCount() {
+    openBrackets = 0;
+    closedBrackets = 0;
+    for (let i = 0; i < calculation.length; i++) {
+        if (calculation.substring(i, i + 1).includes("(")) {
+            openBrackets++;
+        } else if (calculation.substring(i, i + 1).includes(")")) {
+            closedBrackets++;
+        }
+    }
+    return openBrackets - closedBrackets;
 }
 
 // --------------------------------------------- \\
@@ -71,13 +90,19 @@ function replaceOperator(newOperator) {
 
 function storeValue(value) {
     let lastOperator = getLastOperator();
+    let lastValue = getLastValue();
+    console.log(`last value: ${lastValue}`);
+    console.log(`last op: ${lastOperator}`);
     console.log(`bracket ${value}`);
     
     if (lastOperator !== null && !isInteger(value)) {
         calculation =  replaceOperator(value);
+    } else if (isInteger(lastValue) && value.includes("(")) {
+        calculation += '*' + value;
     } else {
         calculation += value;
     }
+
     updateResult(calculation);
     resultContainer.append(resultValue);
     return console.log(`${calculation}`);
@@ -88,6 +113,10 @@ function storeValue(value) {
 // --------------------------------------------- \\
 
 function calculate() {
+    while (getOpenBracketsCount() > 0) {
+        calculation += ")";
+        closedBrackets--;
+    }
     let total = eval(calculation);
     console.log(`total: ${total}`);
     updateResult(total);
