@@ -1,10 +1,13 @@
 const numberButtons = document.querySelectorAll(".numberButton");
 const equals = document.getElementById("equals");
 const clear = document.getElementById("clear");
+
 let calculation = '';
 let resultContainer = document.getElementById("result");
 let resultValue = document.createElement("p");
 
+updateResult(calculation);
+resultContainer.append(resultValue);
 
 function updateResult(newValue) {
     let parsedValue = String(newValue);
