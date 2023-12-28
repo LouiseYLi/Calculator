@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll(".allButtons");
+const buttons = document.querySelectorAll(".numberButtons");
 const clear = document.getElementById("clear");
 const percent = document.getElementById("percent");
 const equals = document.getElementById("equals");
@@ -19,7 +19,7 @@ function isInteger(str) {
 }
 
 function isOperator(char) {
-    const operators = ['+', '-', '/', '*'];
+    const operators = ['+', '-', '/', '*', '='];
     return operators.includes(char);
 }
 
@@ -81,6 +81,7 @@ function storeValue(value) {
 
 function calculate() {
     let total = eval(calculation);
+    console.log(`total: ${total}`);
     updateResult(total);
     resultContainer.append(resultValue);
     calculation = total;

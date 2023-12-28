@@ -1,30 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calculator</title>
+
+        <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
-        <div id="result">
+        <div id="gridMain">
+            <div class="result" id="result"></div>
+            <div class="buttons">
+                <div class="numberButtons" id="numberButtons">
+                    <button id="btn0" value="0">0</button>
+                    <button id="btn1" value="1">1</button>
+                    <button id="btn2" value="2">2</button>
+                    <button id="btn3" value="3">3</button>
+                    <button id="btn4" value="4">4</button>
+                    <button id="btn5" value="5">5</button>
+                    <button id="btn6" value="6">6</button>
+                    <button id="btn7" value="7">7</button>
+                    <button id="btn8" value="8">8</button>
+                    <button id="btn9" value="9">9</button>
+                    <div class="operators" id="operators">
+                        <button value="/">&divide;</button>
+                        <button value="*">&times;</button>
+                        <button value="-">-</button>
+                        <button value="+">+</button>
+                        <button value=".">.</button>
+                    </div>
+                </div>
+                <button id="clear">AC</button>
+                <button id="percent">&percnt;</button>
+                <button id="equals" value="=">=</button>
+            </div>
         </div>
-        <div class="allButtons">
-            <button id="btn0" value="0">0</button>
-            <button id="btn1" value="1">1</button>
-            <button id="btn2" value="2">2</button>
-            <button id="btn3" value="3">3</button>
-            <button id="btn4" value="4">4</button>
-            <button id="btn5" value="5">5</button>
-            <button id="btn6" value="6">6</button>
-            <button id="btn7" value="7">7</button>
-            <button id="btn8" value="8">8</button>
-            <button id="btn9" value="9">9</button>
-            <button value="/">&divide;</button>
-            <button value="*">&times;</button>
-            <button value="-">-</button>
-            <button value="+">+</button>
-        </div>
-            <button id="clear">AC</button>
-            <button id="percent">&percnt;</button>
-            <button id="equals">=</button>
         <script src="../script/calculator.js"></script>
     </body>
 </html>

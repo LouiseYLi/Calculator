@@ -1,0 +1,50 @@
+html {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    color: white;
+}
+
+#gridMain {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr 4fr;
+    height: 100vh;
+    
+}
+
+#result {
+    display: grid;
+    grid-column: 1 / span 4;
+    grid-row: 2 / span 1;
+}
+
+.buttons {
+    display: grid;
+    grid-column: 1 / span 4;
+    grid-row: 3 / span 1;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+#clear {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+#percent {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+}
+
+#equals {
+    grid-column: 4 / span 1;
+    grid-row: 5 / span 1;
+}
+
+.numberButtons {
+    grid-column: 1 / span 4;
+    grid-row: 2 / span 4;
+}
+
+
