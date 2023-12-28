@@ -1,14 +1,21 @@
 const numberButtons = document.querySelectorAll(".numberButton");
+const equals = document.getElementById("equals");
+const clear = document.getElementById("clear");
 let calculation = '';
+let resultContainer = document.getElementById("result");
+let resultValue = document.createElement("p");
+
+function updateResult(newValue) {
+    let parsedValue = String(newValue);
+    resultValue.innerHTML = parsedValue.replace("*", "&times;").replace("/", "&divide;");
+    return resultValue;
+}
 
 function storeValue(value) {
     calculation += value;
+    updateResult(calculation);
+    resultContainer.append(resultValue);
     console.log(`${calculation}`);
-}
-
-function calculate() {
-    let sum = eval(calculation);
-    console.log(`${sum}`);
 }
 
 numberButtons.forEach(button => {
@@ -17,3 +24,17 @@ numberButtons.forEach(button => {
         storeValue(buttonValue);
     })
 )});
+
+// clear.addEventListener("click", (clearCalculation => {
+//     calculation = "";
+//     updateResult(calcul)
+//     return calculation;
+// }));
+
+equals.addEventListener("click", (calculate => {
+    let total = eval(calculation);
+    updateResult(total);
+    resultContainer.append(resultValue);
+    calculation = total;
+    console.log(`${total}`);
+}));
