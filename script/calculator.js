@@ -5,8 +5,13 @@ let calculation = '';
 let resultContainer = document.getElementById("result");
 let resultValue = document.createElement("p");
 
+
 function updateResult(newValue) {
     let parsedValue = String(newValue);
+    if (parsedValue === '') {
+        resultValue.innerHTML = 0;
+        return resultValue
+    }
     resultValue.innerHTML = parsedValue.replace("*", "&times;").replace("/", "&divide;");
     return resultValue;
 }
@@ -25,11 +30,12 @@ numberButtons.forEach(button => {
     })
 )});
 
-// clear.addEventListener("click", (clearCalculation => {
-//     calculation = "";
-//     updateResult(calcul)
-//     return calculation;
-// }));
+clear.addEventListener("click", (clearCalculation => {
+    calculation = "";
+    updateResult(calculation);
+    resultContainer.append(resultValue);
+    return calculation;
+}));
 
 equals.addEventListener("click", (calculate => {
     let total = eval(calculation);
