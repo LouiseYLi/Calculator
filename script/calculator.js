@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll(".numberButtons");
+const brackets = document.querySelectorAll(".brackets");
 const clear = document.getElementById("clear");
 const percent = document.getElementById("percent");
 const equals = document.getElementById("equals");
@@ -11,7 +12,7 @@ updateResult(calculation);
 resultContainer.append(resultValue);
 
 // --------------------------------------------- \\
-// Functions to check value states.
+// Functions to manage value states.
 // --------------------------------------------- \\
 
 function isInteger(str) {
@@ -56,7 +57,13 @@ function updateResult(newValue) {
 // Functions that manage storing calculation values.
 // --------------------------------------------- \\
 
+function buttonClickHandler(e) {
+    let buttonValue = e.target.value;
+    storeValue(buttonValue);
+}
+
 function replaceOperator(newOperator) {
+    if (newOperator == '(' || newOperator == ')') return calculation + newOperator;
     let oldOperator = getLastOperator();
     let newCalculation = calculation.replace(oldOperator, newOperator);
     return newCalculation;
@@ -64,7 +71,8 @@ function replaceOperator(newOperator) {
 
 function storeValue(value) {
     let lastOperator = getLastOperator();
-
+    console.log(`bracket ${value}`);
+    
     if (lastOperator !== null && !isInteger(value)) {
         calculation =  replaceOperator(value);
     } else {
@@ -109,11 +117,12 @@ function getPercent() {
 // --------------------------------------------- \\
 
 buttons.forEach(button => {
-    button.addEventListener("click", (e => {
-        let buttonValue = e.target.value;
-        storeValue(buttonValue);
-    })
-)});
+    button.addEventListener("click", buttonClickHandler)
+});
+
+brackets.forEach(bracket => {
+    bracket.addEventListener("click", buttonClickHandler)
+});
 
 clear.addEventListener("click", (() => {
     clearCalculation();
