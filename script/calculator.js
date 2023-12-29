@@ -71,11 +71,12 @@ function getOpenBracketsCount() {
 
 function updateResult(newValue) {
     let parsedValue = String(newValue);
+
     if (parsedValue === '') {
-        resultValue.innerHTML = 0;
+        resultValue.innerHTML = '0';
         return resultValue
-    }
-    resultValue.innerHTML = parsedValue.replace("*", "&times;").replace("/", "&divide;");
+    } 
+    resultValue.innerHTML = parsedValue.replace(/\*/g, "&times;").replace(/\//g, "&divide");
     return resultValue;
 }
 
@@ -101,7 +102,7 @@ function storeValue(value) {
     
     if (lastOperator !== null && !isInteger(value)) {
         calculation =  replaceOperator(value);
-    } else if (isInteger(lastValue) && value.startsWith("(")) {
+    } else if (calculation !== "" && isInteger(lastValue) && value.startsWith("(")) {
         calculation += '*' + value;
     } else {
         calculation += value;
