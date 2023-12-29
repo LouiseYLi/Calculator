@@ -22,14 +22,18 @@ button {
     grid-template-rows: 1fr 1fr 4fr 0.5fr;
     height: 100vh;
     margin: 0.25em;
-    row-gap: 1em;
+    row-gap: 0.5em;
 }
 
 #result {
+    width: 100%;
+    height: auto;
     display: grid;
     grid-column: 1 / span 4;
     grid-row: 2 / span 1;
-    overflow: hidden;
+    display: inline-block;
+    overflow: hidden; /* Hide overflowing content */
+
 }
 
 .buttons {
@@ -131,13 +135,11 @@ button {
 }
 
 #result p {
-    font-size: 45pt;
+    font-size: 42pt;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    white-space: nowrap;
+    text-align: end;
+    word-wrap: break-word;
 }
 
 @media only screen and (min-width: 750px) {
