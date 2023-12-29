@@ -1,16 +1,29 @@
-html {
+html, body {
     padding: 0;
     margin: 0;
     background-color: black;
     color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30pt;
+}
+
+button {
+    width: 80px;
+    height: 80px;
+    border-style: none;
+    border-radius: 50%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 23pt;
 }
 
 #gridMain {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 2fr 1fr 4fr;
+    grid-template-rows: 1.5fr 1fr 4fr;
     height: 100vh;
-    
+    margin: 0.25em;
+    margin-bottom: 2em;
+    row-gap: 1em;
 }
 
 #result {
@@ -24,36 +37,80 @@ html {
     grid-column: 1 / span 4;
     grid-row: 3 / span 1;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    column-gap: 0.3em;
+    row-gap: 0.3em;
+}
+
+.numberButtons, .operators, .miscButtons {
+    display: grid;
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 5;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 0.3em;
+    row-gap: 0.3em;
 }
 
-#clear {
+#clear, #startBracket, #endBracket, #percent {
+    grid-row: 1 / span 1;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+#clear, #btn1, #btn4, #btn7 {
     grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
 }
 
-#startBracket {
+#startBracket, #btn2, #btn5, #btn8 {
     grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
 }
 
-#endBracket {
-
+#endBracket, #point, #btn3, #btn6, #btn9 {
+    grid-column: 3 / span 1;
 }
 
-#percent {
+#percent, #equals, #addOperator, #minusOperator, #multiplyOperator, #divideOperator {
     grid-column: 4 / span 1;
-    grid-row: 1 / span 1;
 }
 
-#equals {
-    grid-column: 4 / span 1;
+#btn0 {
+    width: 100%;
+    grid-column: 1 / span 2;
+    border-radius: 55px 55px;
+    
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding:1em;
+}
+
+#equals, #btn0, #point {
     grid-row: 5 / span 1;
 }
 
-.numberButtons {
-    grid-column: 1 / span 4;
-    grid-row: 2 / span 4;
+#clear, #startBracket, #endBracket, #percent {
+    grid-row: 1 / span 1;
 }
 
+#btn7, #btn8, #btn9, #multiplyOperator {
+    grid-row: 2 / span 1;
+}
 
+#btn4, #btn5, #btn6, #minusOperator {
+    grid-row: 3 / span 1;
+}
+
+#btn1, #btn2, #btn3, #addOperator {
+    grid-row: 4 / span 1;
+}
+
+#result p {
+    font-size: 70pt;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
