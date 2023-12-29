@@ -8,8 +8,8 @@ html, body {
 }
 
 button {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     border-style: none;
     border-radius: 50%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -19,10 +19,9 @@ button {
 #gridMain {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1.5fr 1fr 4fr;
+    grid-template-rows: 1fr 1fr 4fr 0.5fr;
     height: 100vh;
     margin: 0.25em;
-    margin-bottom: 2em;
     row-gap: 1em;
 }
 
@@ -30,6 +29,7 @@ button {
     display: grid;
     grid-column: 1 / span 4;
     grid-row: 2 / span 1;
+    overflow: hidden;
 }
 
 .buttons {
@@ -42,7 +42,7 @@ button {
     row-gap: 0.3em;
 }
 
-.numberButtons, .operators, .miscButtons {
+.numberButtons {
     display: grid;
     grid-column: 1 / span 4;
     grid-row: 1 / span 5;
@@ -52,11 +52,24 @@ button {
     row-gap: 0.3em;
 }
 
+.operators {
+    display: grid;
+    grid-column: 4 / span 1;
+    grid-row: 1 / span 5;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 0.3em;
+    row-gap: 0.3em;
+}
+
+.numberButtons button {
+    background-color: rgb(49, 49, 49);
+    color: white;
+}
+
 #clear, #startBracket, #endBracket, #percent {
     grid-row: 1 / span 1;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+    font-size: 24pt;
 }
 
 #clear, #btn1, #btn4, #btn7 {
@@ -71,7 +84,17 @@ button {
     grid-column: 3 / span 1;
 }
 
+#percent, #addOperator, #minusOperator, #multiplyOperator, #divideOperator {
+    grid-column: 1 / span 1;
+}    
+
 #percent, #equals, #addOperator, #minusOperator, #multiplyOperator, #divideOperator {
+    background-color: orange;
+    color: white;
+    font-size: 26pt;
+}
+
+#equals {
     grid-column: 4 / span 1;
 }
 
@@ -79,7 +102,7 @@ button {
     width: 100%;
     grid-column: 1 / span 2;
     border-radius: 55px 55px;
-    
+
     display: flex;
     justify-content: start;
     align-items: center;
@@ -92,6 +115,7 @@ button {
 
 #clear, #startBracket, #endBracket, #percent {
     grid-row: 1 / span 1;
+    background-color: darkgray;
 }
 
 #btn7, #btn8, #btn9, #multiplyOperator {
@@ -107,10 +131,97 @@ button {
 }
 
 #result p {
-    font-size: 70pt;
+    font-size: 45pt;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: end;
     align-items: end;
+    white-space: nowrap;
+}
+
+@media only screen and (min-width: 750px) {
+    body {
+        font-size: 24pt;
+    }
+
+    button {
+        width: 120px;
+        height: 120px;
+        font-size: 30pt;
+    }
+
+    #gridMain {
+        grid-template-rows: 1fr 1fr 4fr 0.5fr;
+    }
+
+    .numberButtons {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+
+    .operators {
+        grid-template-rows: repeat(5, 1fr);
+    }
+
+    #clear, #startBracket, #endBracket, #percent {
+        font-size: 30pt;
+    }
+
+    #equals {
+        font-size: 32pt;
+    }
+
+    #btn0 {
+        width: 100%;
+        border-radius: 70px 70px;
+        font-size: 28pt;
+    }
+
+    #result p {
+        font-size: 60pt;
+    }
+}
+
+@media only screen and (min-width: 1920px) and (min-height: 1080px) {
+    body {
+        font-size: 36pt;
+    }
+
+    button {
+        width: 150px;
+        height: 150px;
+        font-size: 40pt;
+    }
+
+    #gridMain {
+        grid-template-rows: 1fr 1fr 4fr 0.5fr;
+    }
+
+    .numberButtons {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+
+    .operators {
+        grid-template-rows: repeat(5, 1fr);
+    }
+
+    #clear, #startBracket, #endBracket, #percent {
+        font-size: 40pt;
+    }
+
+    #equals {
+        font-size: 42pt;
+    }
+
+    #btn0 {
+        width: 100%;
+        border-radius: 80px 80px;
+        font-size: 38pt;
+    }
+
+    #result p {
+        font-size: 80pt;
+    }
 }

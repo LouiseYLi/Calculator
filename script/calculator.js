@@ -1,7 +1,7 @@
 const buttons = document.querySelectorAll(".numberButtons");
 const brackets = document.querySelectorAll(".brackets");
 const clear = document.getElementById("clear");
-const percent = document.getElementById("percent");
+// const percent = document.getElementById("percent");
 const equals = document.getElementById("equals");
 
 let calculation = "";
@@ -19,7 +19,7 @@ resultContainer.append(resultValue);
 // --------------------------------------------- \\
 
 function isInteger(str) {
-    return !isNaN(str);
+    return !isNaN(str) && !isNaN(parseFloat(str));
 }
 
 function isOperator(char) {
@@ -76,18 +76,13 @@ function updateResult(newValue) {
         resultValue.innerHTML = '0';
         return resultValue
     } 
-    resultValue.innerHTML = parsedValue.replace(/\*/g, "&times;").replace(/\//g, "&divide");
+    resultValue.innerHTML = parsedValue.replace(/\*/g, "&times;").replace(/\//g, "&divide;");
     return resultValue;
 }
 
 // --------------------------------------------- \\
 // Functions that manage storing calculation values.
 // --------------------------------------------- \\
-
-function buttonClickHandler(e) {
-    let buttonValue = e.target.value;
-    storeValue(buttonValue);
-}
 
 function replaceOperator(newOperator) {
     if (newOperator == '(' || newOperator == ')') return calculation + newOperator;
@@ -99,7 +94,6 @@ function replaceOperator(newOperator) {
 function storeValue(value) {
     let lastOperator = getLastOperator();
     let lastValue = getLastValue();
-    
     if (lastOperator !== null && !isInteger(value)) {
         calculation =  replaceOperator(value);
     } else if (calculation !== "" && isInteger(lastValue) && value.startsWith("(")) {
@@ -113,6 +107,11 @@ function storeValue(value) {
     return console.log(`${calculation}`);
 }
 
+function buttonClickHandler(e) {
+    let buttonValue = e.target.value;
+    storeValue(buttonValue);
+}
+
 // --------------------------------------------- \\
 // Updates calculation values.
 // --------------------------------------------- \\
@@ -124,11 +123,10 @@ function calculate() {
     }
 
     let total = eval(calculation);
-    console.log(`total: ${total}`);
+    console.log(`Total: ${total}`);
     updateResult(total);
     resultContainer.append(resultValue);
-    calculation = total;
-    console.log(`${total}`);
+    calculation = String(total);
     return calculation;
 }
 
@@ -139,13 +137,13 @@ function clearCalculation() {
     return calculation;
 }
 
-function getPercent() {
-    calculate();
-    let percentage = calculation / 100;
-    updateResult(percentage);
-    resultContainer.append(resultValue);
-    console.log(`${percentage}`);
-}
+// function getPercent() {
+//     calculate();
+//     let percentage = calculation / 100;
+//     updateResult(percentage);
+//     resultContainer.append(resultValue);
+//     console.log(`${percentage}`);
+// }
 
 // --------------------------------------------- \\
 // Button event listeners.
@@ -163,9 +161,9 @@ clear.addEventListener("click", (() => {
     clearCalculation();
 }));
 
-percent.addEventListener("click", (() => {
-    getPercent();
-}));
+// percent.addEventListener("click", (() => {
+//     getPercent();
+// }));
 
 equals.addEventListener("click", (() => {
     calculate();
